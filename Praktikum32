@@ -1,0 +1,46 @@
+import javax.swing.*;
+
+public class Praktikum32 {
+    public static void main (String [] args) {
+
+        String eingabe = JOptionPane.showInputDialog("Geben Sie eine reelle Zahl ein.");
+        String eingabe2 = JOptionPane.showInputDialog("Geben Sie die Einheit ein (Grad C oder K).");
+
+        double reelleZahl = Double.parseDouble(eingabe);
+
+        String c = Double.toString(celciusToKevin(eingabe));
+        String d = Double.toString(kevinToCelsius(eingabe));
+
+        String [] zahlUndEinheit =  new String[2];
+
+        zahlUndEinheit[1] = eingabe2;
+
+        if (eingabe2.equals("Grad C"))
+
+            if (reelleZahl <= -273.15) {
+                System.out.println("Sie können keine Zahl kleiner als -273.16 eingeben.");
+            } else {
+                zahlUndEinheit[0] = c;
+                ausgabe(reelleZahl, eingabe2, zahlUndEinheit);
+            }
+        else if (eingabe2.equals("K"))
+            if (reelleZahl <= 0) {
+                System.out.println("Sie können keine Zahl kleiner als 0 eingeben.");
+            } else {
+                zahlUndEinheit[0] = d;
+                ausgabe(reelleZahl, eingabe2, zahlUndEinheit);
+            }
+    }
+    static double celciusToKevin (String a) {
+        double zahl = Double.parseDouble(a);
+        return (zahl + 273.15);
+    }
+    static double kevinToCelsius (String a) {
+        double zahl = Double.parseDouble(a);
+        return (zahl - 273.15);
+    }
+
+    static void ausgabe (double a, String b, String [] c) {
+        System.out.println(a + " " + b + " entsprechen " + c[0] + " " + c[1]);
+    }
+}
